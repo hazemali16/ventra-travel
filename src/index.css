@@ -1,0 +1,52 @@
+@import "tailwindcss";
+
+
+@theme {
+  --font-sans: "Sora", sans-serif;
+}
+
+.absolute-center {
+  @apply absolute top-1/2 left-1/2 -translate-1/2
+}
+
+.loader {
+  width: 15px;
+  aspect-ratio: 1;
+  border-radius: 50%;
+  clip-path: inset(-45px);
+  box-shadow: -60px 15px #F3C96A, -60px 15px #F3C96A, -60px 15px #F3C96A;
+  transform: translateY(-15px);
+  animation: l19 1s infinite linear;
+}
+@keyframes l19{ 
+  16.67% {box-shadow: -60px 15px #F3C96A, -60px 15px #F3C96A, 19px 15px #F3C96A}
+  33.33% {box-shadow: -60px 15px #F3C96A, 0px 15px #F3C96A, 19px 15px #F3C96A}
+  40%,60% {box-shadow: -19px 15px #F3C96A, 0px 15px #F3C96A, 19px 15px #F3C96A}
+  66.67% {box-shadow: -19px 15px #F3C96A, 0px 15px #F3C96A, 60px 15px #F3C96A}
+  83.33% {box-shadow: -19px 15px #F3C96A, 60px 15px #F3C96A, 60px 15px #F3C96A}
+  100%   {box-shadow: 60px 15px #F3C96A, 60px 15px #F3C96A, 60px 15px #F3C96A}
+}
+
+.CTA-hero {
+  background: linear-gradient(135deg,#F7A97C 0%,#F3C96A 50%,#FFE8A3 100%);
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 15px 40px rgba(243, 201, 106, .35);
+}
+.text-main {
+  color: #FFF8EE;
+}
+.text-main-gredient {
+  background: linear-gradient(135deg,#F7A97C 0%,#F3C96A 50%,#FFE8A3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+.small-title {
+letter-spacing: 0.35em;
+@apply text-sm uppercase max-lg:text-xs
+}
+.big-title {
+  @apply text-5xl font-bold max-lg:text-4xl max-md:text-2xl max-sm:text-xl
+}
+.big-title > span {
+  @apply font-extrabold text-[3.1rem] max-lg:text-[2rem]
+}
