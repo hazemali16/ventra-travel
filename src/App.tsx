@@ -8,7 +8,7 @@ const App = () => {
       <Header />
       <Hero />
       <Explore />
-      <section className='min-h-screen'></section>
+      {/* <section className='min-h-screen'></section> */}
     </main>
   )
 }
