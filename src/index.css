@@ -4,7 +4,9 @@
 @theme {
   --font-sans: "Sora", sans-serif;
 }
-
+html {
+  scroll-behavior: smooth;
+}
 .absolute-center {
   @apply absolute top-1/2 left-1/2 -translate-1/2
 }
@@ -40,6 +42,11 @@
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
+
+/* .floating-nav {
+  @apply fixed bg-black
+} */
+
 .small-title {
 letter-spacing: 0.35em;
 @apply text-sm uppercase max-lg:text-xs max-lg:max-w-80 block mx-auto
