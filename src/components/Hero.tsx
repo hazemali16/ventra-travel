@@ -10,7 +10,7 @@ const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
   const [hasClicked, setHasClicked] = useState(false);
   const [loadedVideos, setloadedVideos] = useState(0);
-  const totalVideos: number = 4;
+  const totalVideos: number = 3;
   const nextVideoRef = useRef<HTMLVideoElement | null>(null);
   const isLoading = loadedVideos < totalVideos - 1;
   useGSAP(

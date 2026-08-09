@@ -66,7 +66,7 @@ const ExploreInfo = ({
                 <h3
                     className="
             mt-2
-            text-3xl
+            text-2xl
             md:text-5xl
             font-bold
             uppercase

@@ -47,7 +47,7 @@ const imagesData: {
             scrollTrigger: {
                 trigger: '#explore',
                 start: 'center center',
-                end: `+=${1700 * imagesData.length} center`,
+                end: `+=${1500 * imagesData.length} center`,
                 scrub: .5,
                 pin: true,
                 pinSpacing: true
@@ -121,20 +121,17 @@ exploreTimeLine.from(descriptionSplit.lines, {
             </div>
             <p className="text-lg leading-relaxed max-w-2xl text-slate-600 max-lg:text-base max-lg:max-w-xl mt-auto max-sm:max-w-lg max-sm:text-sm">Discover handpicked destinations where breathtaking landscapes, unforgettable adventures, and authentic experiences come together to create memories that last a lifetime.</p>
             <div className="absolute left-1/2 top-1/2 -translate-1/2" >
-            <div className=" size-200 max-lg:size-190 max-md:size-170 max-sm:size-120 rounded-2xl overflow-hidden" id="explore-clip">
+            <div className=" size-200 max-lg:size-190 max-md:size-170 max-sm:size-80 rounded-2xl overflow-hidden" id="explore-clip">
                 {imagesData.map((image, index) => (
                     <>
                     <img className={`object-cover object-center min-w-full min-h-full absolute top-0 left-0`} style={{ zIndex: (imagesData.length * 10) - (index * 10) }} src={image.src} alt={image.smallTitle} key={index} id={image.id + 'Image'} />
                     <ExploreInfo smallTitle={image.smallTitle} bigTitle={image.bigTitle} description={image.description} id={image.id} />
                     </>
                 ))}
-                {/* <img className="object-cover object-center min-w-full min-h-full absolute top-0 left-0 z-10" src={'explore1.png'} alt="Mountain" />
-                <img className="object-cover object-center min-w-full min-h-full absolute top-0 left-0 opacity-0" src={'explore2.png'} alt="Mountain" id="explore2" /> */}
             </div>
             </div>
             
     </section>
-    {/* <ExploreInfo /> */}
     </>
   )
 }
