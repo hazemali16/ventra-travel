@@ -5,6 +5,9 @@ import Header from "./components/Header";
 import Hero from "./components/Hero";
 import Explore from "./components/Explore";
 import Adventures from "./components/Adventures";
+import Gallery from "./components/Gallery";
+import Contact from "./components/Contact";
+import Footer from "./Footer";
 
 const videoAssets = [
   "/videos/1.mp4",
@@ -163,7 +166,7 @@ function App() {
       {isLoading ? (
         <LoadingScreen progress={progress} />
       ) : (
-        <main className="overflow-hidden">
+        <main className="overflow-hidden bg-[#07111C]">
           <Header />
 
           <Hero />
@@ -171,6 +174,12 @@ function App() {
           <Explore />
 
           <Adventures />
+
+          <Gallery />
+
+          <Contact />
+
+          <Footer />
         </main>
       )}
     </>

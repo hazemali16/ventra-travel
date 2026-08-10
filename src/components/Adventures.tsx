@@ -1,7 +1,54 @@
 
+import gsap from "gsap"
+import AnimatedTitle from "./AnimatedTitle"
+import { useRef, type MouseEvent } from "react"
+
 const Adventures = () => {
+  const adventuresRef =  useRef<HTMLDivElement | null>(null)
+
+  const handelMouseLeave = () => {
+      const ele = adventuresRef.current
+gsap.to(ele, {
+  duration: 0.4,
+  scale: 1,
+  rotateX: 0,
+  rotateY: 0,
+  ease: "power3.out",
+  overwrite: true,
+});
+  }
+
+    const handelMouseMove = (e: MouseEvent<HTMLImageElement>) => {
+    const {clientX, clientY} = e
+    const ele = adventuresRef.current
+    
+
+    if (!ele) return;
+
+    const rest = ele.getBoundingClientRect()
+
+
+    const x = clientX - rest.left;
+    const y = clientY - rest.top;
+
+    
+    const centerX = rest.width / 2
+    const centerY = rest.height / 2
+    const rotateX = ((y - centerY) / centerY) * -15
+    const rotateY = ((x - centerX) / centerX) * 15
+
+gsap.to(ele, {
+  duration: 0.3,
+  ease: 'power3.out',
+  scale: 1.03,
+  rotateX,
+  rotateY,
+  overwrite: true,
+});
+  }
+
   return (
-        <section className="min-h-screen bg-[#07111C] relative overflow-hidden">
+  <section className="min-h-screen bg-[#07111C] relative h-screen py-40 text-center flex flex-col items-center max-md:pb-30" id="adventures">
   <div
     className="
       absolute
@@ -21,21 +68,21 @@ const Adventures = () => {
         "linear-gradient(135deg, #163B59 0%, #365C70 35%, #B56F62 70%, #F3C96A 100%)",
     }}
   />
-<div className="w-1/2 mx-auto mt-30">
-  <span className="text-xs uppercase tracking-[0.35em] text-[#D9A06A]">
-    Mountain Escape
-  </span>
-
-  <h3 className="mt-2 text-3xl md:text-4xl font-bold uppercase tracking-[0.12em] text-[#FFF8EE]">
-    Chasing Peaks
-  </h3>
-
-  <p className="mt-3 max-w-md text-sm md:text-base leading-relaxed tracking-wide text-white/60">
-    Follow winding roads into the mountains, where towering peaks,
-    quiet lakes, and endless horizons turn every mile into an
-    unforgettable adventure.
-  </p>
-</div>
+            <div className="md:mb-10 text-main">
+              <div className="relative z-10 mix-blend-difference">
+              <span className="small-title text-main-gredient">EMBRACE THE JOURNEY</span>
+            <AnimatedTitle title1="CHASE THE UNKNOWN" title2="LIVE THE EXTRAORDINARY" specialWord="EXTRAORDINARY" />
+              </div>
+            <div className="-mt-25 max-lg:-mt-20 max-md:-mt-10 rounded-2xl overflow-hidden max-w-9/10 mx-auto relative perspective-midrange" ref={adventuresRef}>
+              <img 
+              onMouseLeave={handelMouseLeave}
+              onMouseMove={handelMouseMove}
+              src="adventures.png" 
+              className="w-full h-full object-center object-cover" 
+              loading="lazy"
+              alt="Adventures" />
+            </div>
+            </div>
 </section>
   )
 }

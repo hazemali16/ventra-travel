@@ -7,6 +7,41 @@
 html {
   scroll-behavior: smooth;
 }
+
+/* Scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #031818;
+}
+
+::-webkit-scrollbar-thumb {
+  background: linear-gradient(
+    135deg,
+    #F7A97C 0%,
+    #F3C96A 50%,
+    #FFE8A3 100%
+  );
+  border-radius: 999px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: linear-gradient(
+    135deg,
+    #F3C96A 0%,
+    #FFE8A3 100%
+  );
+}
+
+/* Firefox */
+html {
+  scrollbar-width: thin;
+  scrollbar-color: #F3C96A #031818;
+}
+
+
 .absolute-center {
   @apply absolute top-1/2 left-1/2 -translate-1/2
 }
@@ -42,7 +77,11 @@ html {
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
-
+.text-main-gredient > div {
+  background: linear-gradient(135deg,#F7A97C 0%,#F3C96A 50%,#FFE8A3 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
 /* .floating-nav {
   @apply fixed bg-black
 } */

@@ -5,7 +5,7 @@ import { useRef } from "react";
 
 gsap.registerPlugin(SplitText, ScrollTrigger);
 
-const AnimatedTitle = ({title1, title2}: {title1: string; title2: string}) => {
+const AnimatedTitle = ({title1, title2 = "", specialWord}: {title1: string; title2: string; specialWord: string}) => {
   const animatedTitle = useRef<HTMLHeadingElement | null>(null);
 
   useGSAP(() => {
@@ -18,7 +18,7 @@ const AnimatedTitle = ({title1, title2}: {title1: string; title2: string}) => {
 
     // Find the "Breathtaking" word
     const gradientWord = splitTitle.words.find(
-      (word) => word.textContent?.trim() === "Breathtaking"
+      (word) => word.textContent?.trim() === specialWord
     );
 
     // Add the gradient class to "Breathtaking"
@@ -52,8 +52,8 @@ const AnimatedTitle = ({title1, title2}: {title1: string; title2: string}) => {
   }, []);
 
   return (
-    <h2 ref={animatedTitle} className="big-title mt-8">
-      {title1} <br/> {title2 }
+    <h2 ref={animatedTitle} className="big-title mt-8 capitalize ">
+      {title1} <br/> {title2}
     </h2>
   );
 };

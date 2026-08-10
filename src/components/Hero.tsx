@@ -1,10 +1,10 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap/all";
 import { useRef, useState } from "react";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger, SplitText } from "gsap/all";
 import CTA from "./CTA";
 
-gsap.registerPlugin(ScrollTrigger);
+gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const Hero = () => {
   const [currentIndex, setCurrentIndex] = useState(1);
@@ -12,6 +12,8 @@ const Hero = () => {
   const [loadedVideos, setloadedVideos] = useState(0);
   const totalVideos: number = 3;
   const nextVideoRef = useRef<HTMLVideoElement | null>(null);
+  const heroTitle = useRef<HTMLHeadingElement | null>(null);
+  const heroP = useRef<HTMLParagraphElement | null>(null);
   const isLoading = loadedVideos < totalVideos - 1;
   useGSAP(
     () => {
@@ -56,6 +58,35 @@ const Hero = () => {
         scrub: true,
       },
     });
+    const heroTitleSplitText = new SplitText(heroTitle.current, {
+      type: 'lines, words, chars'
+    })
+    const gradientWord = heroTitleSplitText.words.find(
+      (word) => word.textContent?.trim() === 'Horizon'
+    );
+    if (gradientWord) {
+      gradientWord.classList.add("text-main-gredient");
+    }
+    gsap.from(heroTitleSplitText.chars, {
+      opacity: 0,
+      y: 30,
+      duration: .3,
+      stagger: 0.1,
+      ease: "power1.inOut"
+    })
+
+    const heroPSplitText = new SplitText(heroP.current, {
+      type: 'lines, words'
+    })
+    gsap.from(heroPSplitText.lines, {
+      opacity: 0,
+      y: 30,
+      delay: 2,
+      duration: .3,
+      stagger: 0.1,
+      ease: "power1.inOut"
+    })
+
   }, []);
   const upcomingVideoIndex = (currentIndex % totalVideos) + 1;
   const handelMiniVideoClick = () => {
@@ -69,7 +100,7 @@ const Hero = () => {
   };
 
   return (
-    <div className="overflow-hidden w-screen h-dvh relative" id="home">
+    <section className="overflow-hidden w-screen h-dvh relative bg-blue-50" id="home">
       {isLoading && (
         <div className="w-full h-dvh flex justify-center items-center">
           <div className="loader"></div>
@@ -135,23 +166,23 @@ const Hero = () => {
         >
           <div className="w-9/10 mx-auto">
             <div className="w-3/10 max-2xl:w-4/10 max-lg:w-4/5 max-lg:pt-80 max-md:pt-60">
-              <h1 className="text-6xl text-main font-bold mb-15 uppercase max-2xl:text-5xl max-xl:text-4xl max-lg:mb-10 max-lg:text-2xl">
-                Explore Beyond the{" "}
-                <span className="text-main-gredient">Horizon</span>
+              <h1 ref={heroTitle} className="text-6xl text-main font-bold mb-15 uppercase max-2xl:text-5xl max-xl:text-4xl max-lg:mb-10 max-lg:text-2xl">
+                Explore Beyond the Horizon
               </h1>
               <div className="text-blue-100 leading-relaxed text-xl max-2xl:text-lg font-bold max-xl:text-base max-lg:text-small max-md:text-xs">
-                <p className="mb-5">
+                <p className="" ref={heroP}>
                   Ventra Travel creates unforgettable journeys through the
                   world's most breathtaking landscapes, from tranquil forests
                   and majestic mountains to endless ocean horizons.
-                </p>
-                <p className="">
+                  <br />
                   Every destination is carefully chosen to inspire adventure,
                   reconnect you with nature, and turn every trip into a story
                   worth remembering.
                 </p>
               </div>
-              <CTA content="Start Exploring" />
+              <div className="max-lg:text-sm max-md:text-xs">
+                <CTA content="Start Exploring" icon='arrow' isHero={true} />
+              </div>
             </div>
           </div>
         </div>
@@ -171,7 +202,7 @@ const Hero = () => {
           <br /> TRAVEL
         </span>
       </div>
-    </div>
+    </section>
   );
 };
 
