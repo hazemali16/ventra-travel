@@ -48,7 +48,7 @@ gsap.to(ele, {
   }
 
   return (
-  <section className="min-h-screen bg-[#07111C] relative h-screen py-40 text-center flex flex-col items-center max-md:pb-30" id="adventures">
+  <section className="bg-[#07111C] relative py-40 text-center flex flex-col items-center max-md:pb-30" id="adventures">
   <div
     className="
       absolute
